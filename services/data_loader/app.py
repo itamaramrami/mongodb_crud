@@ -1,18 +1,19 @@
 from fastapi import FastAPI
-from .DAL import *
+from DAL import DataLoader
+from solider import Solider
 import os
 
 app = FastAPI()
 
-MONGO_USER = os.getenv("MONGO_USER", "root")
-MONGO_PASS = os.getenv("MONGO_PASS", "root123")
-MONGO_HOST = os.getenv("MONGO_HOST", "mongo-service")
-MONGO_PORT = os.getenv("MONGO_PORT", "27017")
 
-uri = f"mongodb://{MONGO_USER}:{MONGO_PASS}@{MONGO_HOST}:{MONGO_PORT}/?authSource=admin"
+uri = "mongodb://localhost:27017"
 
-loader = DataLoader(uri)
-loader.init_data()
+# loader = DataLoader(uri)
+# solid=Solider(2,"it","kk",12,"ll")
+# loader.insert(solid)
+# loader.delete(1)
+# loader.get_all()
+# loader.update(1,"rank","ooo")
 
 @app.get("/data")
 def get_data():
